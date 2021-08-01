@@ -11,7 +11,8 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     if logged_in?
-      redirect '/users/:slug'
+      @user = current_user
+      redirect "/users/#{@user.username}"
     else
       erb :index
     end
@@ -25,19 +26,24 @@ class ApplicationController < Sinatra::Base
     unless params[:username] == "" || params[:email] == "" || params[:password] == ""
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
-      redirect '/users/:slug'
+      redirect "/users/#{@user.slug}"
     else
       redirect '/signup'
     end
   end
 
-  post "/login" do
+  post '/login' do
     @user = User.find_by(username: params[:username])
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
     end
-    redirect '/users/:slug'
+    redirect "/users/#{@user.slug}"
+  end
+
+  get '/logout' do 
+    session.clear
+    redirect '/'
   end
 
   helpers do

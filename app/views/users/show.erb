@@ -3,10 +3,10 @@
 <h2>Games:</h2>
 <% @user.games.each do |game| %>
     <h4><%= game.title %></h4>
-    <% game.achievements.each do |achievement| %>
-    <ol>
-        <li><%= achievement.name %></li>
-        <p><%= achievement.description %></p>
-    </ol>
+    <% @user.achievements.each do |achievement| %>
+        <ol>
+            <li><%= achievement.name if achievement.game.id == game.id %></li>
+            <p><%= achievement.description if achievement.game.id == game.id %></p>
+        </ol>
     <% end %>
 <% end %>
