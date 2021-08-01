@@ -1,0 +1,6 @@
+<h1><%= @game.title %></h1>
+
+<% @game.achievements.each do |achievement| %>
+        <h3><%= achievement.name %></h3>
+        <p><%= achievement.description %></p>
+<% end %>
