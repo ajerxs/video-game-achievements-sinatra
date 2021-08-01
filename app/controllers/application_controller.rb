@@ -10,11 +10,15 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    # if logged_in?
-    #   redirect '/somewhere'
-    # else
+    if logged_in?
+      redirect '/users/:slug'
+    else
       erb :index
-    # end
+    end
+  end
+
+  get '/signup' do
+    erb :'users/create_user'
   end
 
   post "/login" do
@@ -23,7 +27,7 @@ class ApplicationController < Sinatra::Base
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
     end
-    # redirect '/somewhere'
+    redirect '/users/:slug'
   end
 
   helpers do
