@@ -1,3 +1,12 @@
 <h1><%= @user.username %></h1>
 
 <h2>Games:</h2>
+<% @user.games.each do |game| %>
+    <h4><%= game.title %></h4>
+    <% game.achievements.each do |achievement| %>
+    <ol>
+        <li><%= achievement.name %></li>
+        <p><%= achievement.description %></p>
+    </ol>
+    <% end %>
+<% end %>

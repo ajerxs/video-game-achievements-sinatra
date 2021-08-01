@@ -1,3 +1,5 @@
+require_relative 'concerns/slugify'
+
 class User < ActiveRecord::Base
     has_many :user_achievements
     has_many :user_games

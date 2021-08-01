@@ -1,3 +1,5 @@
+require_relative 'concerns/slugify'
+
 class Achievement < ActiveRecord::Base
     belongs_to :game
     has_many :user_achievements
