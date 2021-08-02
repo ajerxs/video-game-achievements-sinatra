@@ -5,7 +5,6 @@ require './config/environment'
 # end
 
 use Rack::MethodOverride
-use AchievementsController
 use GamesController
 use UsersController
 run ApplicationController
