@@ -45,4 +45,24 @@ class GamesController < ApplicationController
         end
     end
 
+    get '/games/:slug/edit' do 
+        if logged_in?
+            @game = Game.find_by_slug(params[:slug])
+            erb :'games/edit'
+        else
+            redirect '/'
+        end
+    end
+
+    patch '/games/:slug' do 
+        @game = Game.find_by_slug(params[:slug])
+        if params[:game_title] != ""
+            @game.update(title: params[:game_title])
+            @game.save
+            redirect "/games/#{@game.slug}"
+        else
+            redirect "/games/#{@game.slug}/edit"
+        end
+    end
+
 end
