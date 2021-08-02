@@ -4,3 +4,8 @@
         <h3><%= achievement.name %></h3>
         <p><%= achievement.description %></p>
 <% end %>
+<br><br>
+<form action="/games/<%= @game.slug %>/delete" method="post">
+    <p><small>If there is any reason to delete this game along with its achievements (i.e. the game does not actually exist, the game has been reworked with new achievements, there are outstanding misspellings, etc.), please feel free to delete it!</small></p>
+    <input type="submit" value="Delete">
+</form>

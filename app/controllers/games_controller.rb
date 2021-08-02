@@ -65,4 +65,13 @@ class GamesController < ApplicationController
         end
     end
 
+    post '/games/:slug/delete' do 
+        @game = Game.find_by_slug(params[:slug])
+        @game.achievements.each do |achievement|
+            achievement.delete
+        end
+        @game.delete
+        redirect '/games'
+    end
+
 end
