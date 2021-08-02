@@ -13,6 +13,25 @@ class GamesController < ApplicationController
         end
     end
 
+    post '/games' do 
+        @user = current_user
+
+        if !params[:game_title].empty?
+            @game = Game.create(title: params[:game_title])
+            if params[:achievement_title] != "" && params[:achievement_description] != ""
+                achievement = Achievement.create(name: params[:achievement_name], description: params[:achievement_description])
+                @game.achievements << achievement
+                @user.games << @game
+                @user.achievements << achievement
+            else
+                redirect "/users/#{@user.slug}"
+            end
+            redirect "/users/#{@user.slug}"
+        else
+            redirect '/games/new'
+        end
+    end
+
     get '/games/new' do
         erb :'games/new'
     end
