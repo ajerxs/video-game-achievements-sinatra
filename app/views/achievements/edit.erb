@@ -1,0 +1,11 @@
+<h1>Edit Achievement</h1>
+<form action="/achievements/<%= @achievement.id %>" method="post">
+    <input type="hidden" id="hidden" name="_method" value="patch">
+    <h3>Edit Name: </h3>
+    <input type="text" name="achievement_name" value="<%= @achievement.name %>">
+    <br>
+    <h3>Edit Description: </h3>
+    <input type="text" name="achievement_description" value="<%= @achievement.description %>">
+    <br>
+    <input type="submit" name="submit">
+</form>

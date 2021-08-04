@@ -45,4 +45,20 @@ class AchievementsController < ApplicationController
         erb :'achievements/achievement'
     end
 
+    get '/achievements/:id/edit' do
+        @achievement = Achievement.find_by_id(params[:id])
+        erb :'achievements/edit'
+    end
+
+    patch '/achievements/:id' do
+        @achievement = Achievement.find_by_id(params[:id])
+        if params[:achievement_name] != "" && params[:achievement_description] != ""
+            @achievement.update(name: params[:achievement_name], description: params[:achievement_description])
+            @achievement.save
+            redirect "/achievements/#{@achievement.id}"
+        else
+            redirect "/achievements/#{@achievement.id}/edit"
+        end
+    end
+
 end

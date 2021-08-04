@@ -1,3 +1,11 @@
 <h1><%= @achievement.name %></h1>
 <h2>Game: <%= @achievement.game.title %></h2>
 <p><%= @achievement.description %></p>
+<form action="/achievements/<%= @achievement.id %>/edit" method="get">
+    <input type="submit" value="Edit Achievement">
+</form>
+<br><br><br>
+<form action="/achievements/<%= @achievement.id %>/delete" method="post">
+    <p><small>If this achievement needs to be republished or does not exists, fell free to delete it!</small> **CAUTION** <small>This function removes this achievment from the database.</small><p>
+    <input type="submit" value="Delete">
+</form>
