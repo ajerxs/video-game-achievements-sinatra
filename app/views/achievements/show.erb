@@ -3,3 +3,6 @@
 <% @achievements.each do |achievement| %>
     <h3><%= achievement.name %> - <%= achievement.game.title %></h3>
 <% end %>
+<form action="/achievements/new" method="get">
+    <input type="submit" value="New Achievement">
+</form>

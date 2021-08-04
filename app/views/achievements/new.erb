@@ -1,0 +1,19 @@
+<h1>Add a New Achievement to the Database!</h1>
+<form action="/achievements" method="post">
+    <h3>Achievement Name: </h3><input type="text" name="achievement_name">
+    <br><br>
+    <h3>Description: </h3><input type="text" name="achievement_description">
+    <br><br>
+    <h3>Associated Game:</h3>
+    <select name="game[id]">
+        <option value="">--Please select a game--</option>
+        <% @games.each do |game| %>
+            <option value="<%= game.id %>"><%= game.title %></option>
+        <% end %>
+    </select>
+    <br><br>
+    <h4><small>If the game doesn't exist in our database, please add it!</small></h4>
+    <input type="text" name="game_title">
+    <br><br>
+    <input type="submit" name="submit">
+</form>
