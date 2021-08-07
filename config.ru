@@ -5,6 +5,7 @@ require './config/environment'
 # end
 
 use Rack::MethodOverride
+use PostsController
 use AchievementsController
 use GamesController
 use UsersController

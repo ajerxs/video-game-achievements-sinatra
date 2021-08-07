@@ -1,0 +1,5 @@
+<h1>The Message Board</h1>
+
+<% @posts.each do |post| %>
+    <p><%= post.user.username %> - <%= post.message %></p>
+<% end %>

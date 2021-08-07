@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_31_173934) do
+ActiveRecord::Schema.define(version: 2021_08_07_151117) do
 
   create_table "achievements", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 2021_07_31_173934) do
 
   create_table "games", force: :cascade do |t|
     t.string "title"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "message"
+    t.integer "user_id"
   end
 
   create_table "user_achievements", force: :cascade do |t|

@@ -22,3 +22,7 @@ user.achievements << Achievement.find_by_id(1)
 user.achievements << Achievement.find_by_id(2)
 user.achievements << Achievement.find_by_id(4)
 user.achievements << Achievement.find_by_id(6)
+
+Post.create(message: "This is a post that I complain about something to people online!", user_id: 1)
+Post.create(message: "This is another post that I decide to say something controversial!", user_id: 1)
+Post.create(message: "This is my final post of the day in which I say something that is common sense but act as though it is profound!", user_id: 1)
