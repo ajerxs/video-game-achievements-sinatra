@@ -1,0 +1,8 @@
+<p><%= @post.message %></p>
+<p><strong><%= @post.user.username %></strong></p>
+<form action="/posts/<%= @post.id %>/edit" method="get">
+    <input type="submit" value="Edit Post">
+</form>
+<form action="/posts/<%= @post.id %>/delete" method="post">
+    <input type="submit" value="Delete Post">
+</form>
