@@ -16,17 +16,29 @@ class PostsController < ApplicationController
     end
 
     get '/posts/new' do 
-        erb :'posts/new'
+        if logged_in?
+            erb :'posts/new'
+        else
+            redirect '/'
+        end
     end
 
     get '/posts/:id' do 
-        @post = Post.find_by_id(params[:id])
-        erb :'posts/post'
+        if logged_in?
+            @post = Post.find_by_id(params[:id])
+            erb :'posts/post'
+        else
+            redirect '/'
+        end
     end
 
     get '/posts/:id/edit' do
         @post = Post.find_by_id(params[:id])
-        erb :'posts/edit'
+        if logged_in? && @post.user_id == current_user.id
+            erb :'posts/edit'
+        else
+            redirect "/posts/#{@post.id}"
+        end
     end
 
     patch '/posts/:id' do 
@@ -38,8 +50,13 @@ class PostsController < ApplicationController
 
     post '/posts/:id/delete' do 
         @post = Post.find_by_id(params[:id])
-        @post.delete
-        redirect '/posts'
+        @user = current_user
+        if logged_in? && @post.user_id == @user.id
+            @post.delete
+            redirect '/posts'
+        else
+            redirect "/posts/#{@post.id}"
+        end
     end
 
 end

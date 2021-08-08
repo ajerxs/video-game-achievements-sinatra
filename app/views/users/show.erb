@@ -2,10 +2,10 @@
 
 <h2>Games:</h2>
 <% @user.games.each do |game| %>
-    <h3><%= game.title %></h3>
+    <a href="/games/<%= game.slug %>"><h3><%= game.title %></h3></a>
     <% @user.achievements.each do |achievement| %>
         <ol>
-            <li><%= achievement.name if achievement.game.id == game.id %></li>
+            <a href="/achievements/<%= achievement.id %>"><li><%= achievement.name if achievement.game.id == game.id %></li></a>
             <p><%= achievement.description if achievement.game.id == game.id %></p>
         </ol>
     <% end %>

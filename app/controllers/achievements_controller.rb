@@ -61,6 +61,13 @@ class AchievementsController < ApplicationController
         end
     end
 
+    post '/achievements/:id/add' do 
+        @achievement = Achievement.find_by_id(params[:id])
+        @user = current_user
+        @user.achievements << @achievement
+        redirect "/users/#{@user.slug}"
+    end
+
     post '/achievements/:id/delete' do
         @achievement = Achievement.find_by_id(params[:id])
         @achievement.delete

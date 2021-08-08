@@ -1,5 +1,6 @@
 <h1>The Message Board</h1>
 
 <% @posts.each do |post| %>
-    <p><%= post.user.username %> - <%= post.message %></p>
+    <a href="/posts/<%= post.id %>"><p><strong><%= post.user.username %></strong>: <%= post.message %></p></a>
+    <br>
 <% end %>

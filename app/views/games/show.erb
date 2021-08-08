@@ -2,7 +2,7 @@
 
 <% @games.each do |game| %>
     <ol>
-        <li><%= game %></li>
+        <a href="/games/<%= game.downcase.gsub(' ', '-').gsub(/[^\w-]/, '') %>"<li><%= game %></li></a>
     </ol>
 <% end %>
 <form action="/games/new" method="get">

@@ -1,7 +1,7 @@
 <h1>List of All Achievements in the Database</h1>
 
 <% @achievements.each do |achievement| %>
-    <h3><%= achievement.name %> - <%= achievement.game.title %></h3>
+    <a href="/achievements/<%= achievement.id %>"<p><%= achievement.name %> <strong>(<%= achievement.game.title %>)</strong></p></a>
 <% end %>
 <form action="/achievements/new" method="get">
     <input type="submit" value="New Achievement">

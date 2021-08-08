@@ -33,7 +33,11 @@ class GamesController < ApplicationController
     end
 
     get '/games/new' do
-        erb :'games/new'
+        if logged_in?
+            erb :'games/new'
+        else
+            redirect '/'
+        end
     end
 
     get '/games/:slug' do 
@@ -63,6 +67,13 @@ class GamesController < ApplicationController
         else
             redirect "/games/#{@game.slug}/edit"
         end
+    end
+
+    post '/games/:slug/add' do 
+        @game = Game.find_by_slug(params[:slug])
+        @user = current_user
+        @user.games << @game
+        redirect "/users/#{@user.slug}"
     end
 
     post '/games/:slug/delete' do 
