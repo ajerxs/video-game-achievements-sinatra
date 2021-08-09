@@ -18,8 +18,4 @@ class Game < ActiveRecord::Base
         @found = self.where("title LIKE ?", @findable)[0]
     end
 
-    # def self.findable_slug
-    #     split_slug = @slug.split('-')
-    #     @findable = "#{split_slug.first}" + "%" + "#{split_slug.last}"
-    # end
 end
