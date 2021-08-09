@@ -13,9 +13,13 @@ class Game < ActiveRecord::Base
     end
 
     def self.find_by_slug(slug)
-        @slug = slug
-        self.findable_slug
-        @found = self.where("title LIKE ?", @findable)[0]
+        if slug.split('-').count >= 2
+            @slug = slug
+            self.findable_slug
+            @found = self.where("title LIKE ?", @findable)[0]
+        else
+            @found = self.where("title LIKE ?", slug)[0]
+        end
     end
 
 end
