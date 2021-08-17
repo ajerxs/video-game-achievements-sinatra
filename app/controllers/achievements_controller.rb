@@ -1,16 +1,20 @@
 class AchievementsController < ApplicationController
 
     get '/achievements' do
-        unsorted_achievement_names = []
-        @achievements = []
-        Achievement.all.each do |achievement|
-            unsorted_achievement_names << achievement.name
+        if logged_in?
+            unsorted_achievement_names = []
+            @achievements = []
+            Achievement.all.each do |achievement|
+                unsorted_achievement_names << achievement.name
+            end
+            sorted_achievement_names = unsorted_achievement_names.sort
+            sorted_achievement_names.each do |achievement|
+                @achievements << Achievement.find_by(name: achievement)
+            end
+            erb :'achievements/show'
+        else
+            redirect '/'
         end
-        sorted_achievement_names = unsorted_achievement_names.sort
-        sorted_achievement_names.each do |achievement|
-            @achievements << Achievement.find_by(name: achievement)
-        end
-        erb :'achievements/show'
     end
 
     get '/achievements/new' do 
